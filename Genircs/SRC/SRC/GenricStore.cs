@@ -12,33 +12,28 @@ public interface IEntity
 public class GenricStore<T>
     where T :class,IEntity
 {
-    private readonly List<T> _Store = [];
+    private readonly Dictionary<int,T> _Store = [];
 
-    public void ADD(T st)
-   => _Store.Add(st);
+    public void ADD(int id,T st)
+    {
+        if (_Store.ContainsKey(id)) throw new ArgumentException("The Key Ordey Exsit");
+        _Store.Add(id,st);
+    }
+   
 
     public T? GetByID(int iD)
     {
-        foreach (var st in _Store)
+        if (_Store.TryGetValue(iD,out T? Result))
         {
-            if (st.ID == iD)
-            {
-                return st;
-            }
+            return Result;
         }
         return null;
     }
 
-    public IReadOnlyList<T> GetAll()
+    public IReadOnlyDictionary<int,T> GetAll()
       => _Store;
     public void Remove(int id)
     {
-        foreach (var st in _Store)
-        {
-            if (st.ID == id)
-            {
-                _Store.Remove(st);
-            }
-        }
+        if (_Store.ContainsKey(id)) _Store.Remove(id);
     }
 }
