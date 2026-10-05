@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SRC
 {
-    public class Course
+    public class Course:IEntity
     {
         public Course(int iD, string title, decimal price)
         {

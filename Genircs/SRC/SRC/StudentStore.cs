@@ -8,8 +8,8 @@ namespace SRC;
 public class StudentStore
 {
     private readonly List<Student> students = [];
-    
 
+    
 
     public void ADD(Student Student)
    => students.Add(Student);
@@ -18,7 +18,7 @@ public class StudentStore
     {
         foreach(var st in students)
         {
-            if (st.Id == iD)
+            if (st.ID == iD)
             {
                 return st;
             }     
@@ -32,7 +32,7 @@ public class StudentStore
     {
         foreach (var st in students)
         {
-            if (st.Id == id)
+            if (st.ID == id)
             {
                 students.Remove(st);
             }
