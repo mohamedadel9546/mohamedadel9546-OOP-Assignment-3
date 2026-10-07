@@ -9,19 +9,37 @@ public class StudentStore
 {
     private readonly List<Student> students = [];
 
-    
+
 
     public void ADD(Student Student)
-   => students.Add(Student);
+    {
+
+        foreach (var item in students)
+        {
+            try
+            {
+                if (item.ID == Student.ID)
+                {
+                    throw new ArgumentException("The student Alrdy Exsit");
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        students.Add(Student);
+
+    }
 
     public Student? GetByID(int iD)
     {
-        foreach(var st in students)
+        foreach (var st in students)
         {
             if (st.ID == iD)
             {
                 return st;
-            }     
+            }
         }
         return null;
     }
@@ -38,7 +56,8 @@ public class StudentStore
             }
         }
     }
-  
+
+
 }
 
 
